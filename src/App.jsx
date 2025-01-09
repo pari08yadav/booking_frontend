@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import SearchTrain from './components/SerachTrain';
 import BaseLayout from './components/BaseLayout';
+import BookTicket from './components/BookTicket';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/search/train" element={<SearchTrain />} />
+          <Route path="/book/ticket" element={<BookTicket />} />
         </Routes>
       </BaseLayout>
     </Router>

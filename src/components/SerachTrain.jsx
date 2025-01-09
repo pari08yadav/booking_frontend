@@ -8,7 +8,10 @@ const SearchTrain = () => {
   const [date, setDate] = useState("");
   const [results, setResults] = useState([]);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [infoMessage, setInfoMessage] = useState(""); // For ticket availability messages
   const navigate = useNavigate();
+
 
   useEffect(() => {
     const token = localStorage.getItem("authToken");
@@ -19,27 +22,30 @@ const SearchTrain = () => {
 
   const handleSearch = async () => {
     const token = localStorage.getItem("authToken");
-    
+
     if (!token) {
       setError("You must be logged in to search for trains.");
       return;
     }
-    
+
     if (!source || !destination) {
-      setError("Please fill in all fields.");
+      setError("Please fill in all required fields.");
       return;
     }
-    
+
     try {
-      console.log(source, destination, date)
+      const params = { source, destination };
+      if (date) {
+        params.date = date; // Only add date if it's provided
+      }
+
       const response = await axios.get("http://127.0.0.1:8000/api/search/tickets/", {
         headers: {
           Authorization: `Bearer ${token}`, // Pass the token in the header
         },
-        params: { source, destination, date },
-        
+        params: params, // Pass the params dynamically
       });
-      console.log(token)
+      console.log("**************",response.data);
       setResults(response.data);
       setError("");
     } catch (err) {
@@ -48,9 +54,18 @@ const SearchTrain = () => {
         localStorage.removeItem("authToken"); // Clear token
         navigate("/login");
       } else {
-        setError("No trains found for the given criteria.");
+        setError("No tickets found for the given criteria.");
         setResults([]);
       }
+    }
+  };
+
+  const handleBookRedirect = (train) => {
+    if (train.available_seats > 0) {
+      navigate("/book/ticket", { state: { train : train } });
+    } else {
+      setInfoMessage("Tickets are not available for this train.");
+      setTimeout(() => setInfoMessage(""), 3000); // Clear message after 3 seconds
     }
   };
 
@@ -78,19 +93,20 @@ const SearchTrain = () => {
         <button onClick={handleSearch}>Search</button>
       </div>
       {error && <p className="error">{error}</p>}
+      {infoMessage && <p className="info">{infoMessage}</p>}
       <div className="results">
         {results.length > 0 ? (
-          results.map((ticket, index) => (
+          results.map((train, index) => (
             <div key={index} className="result-item">
-              <h3>{ticket.train.name} ({ticket.train.train_number})</h3>
-              <p>
-                From: {ticket.train.source} To: {ticket.train.destination}
-              </p>
-              <p>
-                Departure: {ticket.train.departure_time} Arrival: {ticket.train.arrival_time}
-              </p>
-              <p>Date: {ticket.date}</p>
-              <p>Available Seats: {ticket.available_seats}</p>
+              <h3>{train.train_name}</h3>
+              <p>Date: {train.date}</p>
+              <p>Source: {train.source}</p>
+              <p>Destination: {train.destination}</p>
+              <p>Available Seats: {train.available_seats}</p>
+              <p>Train schedule Id: {train.train_schedule_id} </p>
+              <button onClick={() => handleBookRedirect(train)}>
+                Book Ticket
+              </button>
             </div>
           ))
         ) : (

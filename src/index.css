@@ -343,3 +343,86 @@ button:hover {
   text-align: center;
   padding: 10px 0;
 }
+
+
+/* BookTicket Component CSS */
+.book-ticket-container {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.book-ticket-container h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.passenger-form {
+  margin-bottom: 15px;
+}
+
+.passenger-form input,
+.passenger-form select {
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.passenger-form select {
+  background-color: #fff;
+}
+
+.passenger-form input:focus,
+.passenger-form select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+.add-passenger-btn,
+.book-ticket-btn {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.add-passenger-btn:hover,
+.book-ticket-btn:hover {
+  background-color: #0056b3;
+}
+
+.add-passenger-btn {
+  background-color: #28a745;
+}
+
+.add-passenger-btn:hover {
+  background-color: #218838;
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.success-message {
+  color: #28a745;
+  font-size: 14px;
+  margin-top: 10px;
+}
