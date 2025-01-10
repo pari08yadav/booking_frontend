@@ -7,18 +7,18 @@ const Home = () => {
   // Check if the user is logged in
   const isLoggedIn = !!localStorage.getItem("authToken");
 
-  const handleLogin = () => {
-    navigate("/login"); // Navigate to the Login page
-  };
+  // const handleLogin = () => {
+  //   navigate("/login"); // Navigate to the Login page
+  // };
 
-  const handleSignup = () => {
-    navigate("/signup"); // Navigate to the Signup page
-  };
+  // const handleSignup = () => {
+  //   navigate("/signup"); // Navigate to the Signup page
+  // };
 
-  const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Remove the token from localStorage
-    navigate("/"); // Redirect to the home page
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("authToken"); // Remove the token from localStorage
+  //   navigate("/"); // Redirect to the home page
+  // };
 
   const handleSearchTrain = () => {
     navigate("/search/train"); // Navigate to the Search Train page

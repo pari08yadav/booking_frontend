@@ -6,6 +6,9 @@ import Signup from './components/Signup';
 import SearchTrain from './components/SerachTrain';
 import BaseLayout from './components/BaseLayout';
 import BookTicket from './components/BookTicket';
+import AddFunds from './components/AddFunds';
+import CheckBalance from './components/CheckBalance';
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -13,12 +16,18 @@ function App() {
     <Router>
       <BaseLayout>
         <Routes>
-          {/* Define the route for the Home page */}
+          {/* Public Routes */}
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/search/train" element={<SearchTrain />} />
-          <Route path="/book/ticket" element={<BookTicket />} />
+
+          {/* Protected Routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/search/train" element={<SearchTrain />} />
+            <Route path="/book/ticket" element={<BookTicket />} />
+            <Route path="/add/funds" element={<AddFunds />} />
+            <Route path="/check/balance" element={<CheckBalance />} />
+          </Route>
         </Routes>
       </BaseLayout>
     </Router>
