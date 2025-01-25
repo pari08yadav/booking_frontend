@@ -19,9 +19,9 @@ const Login = () => {
         identifier,
         password,
       });
-
+      console.log(identifier, password);
       const token  = response.data.tokens.access;
-
+      console.log(token);
       // Store the token in localStorage
       localStorage.setItem("authToken", token);
       

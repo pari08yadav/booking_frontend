@@ -28,8 +28,9 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     setSuccess('');
-
+    console.log("Helooooooooooooooo")
     try {
+      console.log("Helooooooooooooooo")
       const response = await fetch('http://localhost:8000/api/signup/', {
         method: 'POST',
         headers: {
@@ -37,6 +38,8 @@ const Signup = () => {
         },
         body: JSON.stringify(formData),
       });
+      console.log("Helooooooooooooooo")
+      console.log(response)
 
       if (response.ok) {
         setSuccess('Signup successful! Redirecting to login...');

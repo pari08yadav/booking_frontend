@@ -15,6 +15,12 @@ const BookTicket = () => {
         setPassengers([...passengers, { name: "", age: "", classType: "" }]);
     };
 
+    // Handle removing a passenger
+    const handleRemovePassenger = (index) => {
+        const updatedPassengers = passengers.filter((_, i) => i !== index);
+        setPassengers(updatedPassengers);
+    };
+
     // Handle input change for passenger details
     const handleInputChange = (index, field, value) => {
         const updatedPassengers = [...passengers];
@@ -55,7 +61,7 @@ const BookTicket = () => {
             // Handle success
             alert("Tickets booked successfully!");
             console.log("Response:", response.data);
-            navigate("/bookings", { state: { bookings: response.data.bookings } });
+            navigate("/display/ticket", { state: { bookings: response.data.bookings } });
         } catch (error) {
             // Check if the error has a response from the server
             if (error.response) {
@@ -116,6 +122,13 @@ const BookTicket = () => {
                         <option value="Second AC">Second AC</option>
                         <option value="Third AC">Third AC</option>
                     </select>
+                    <button
+                        className="remove-passenger-btn"
+                        onClick={() => handleRemovePassenger(index)}
+                        disabled={passengers.length === 1}
+                    >
+                        Remove
+                    </button>
                 </div>
             ))}
             <button className="add-passenger-btn" onClick={handleAddPassenger}>

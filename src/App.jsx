@@ -9,6 +9,7 @@ import BookTicket from './components/BookTicket';
 import AddFunds from './components/AddFunds';
 import CheckBalance from './components/CheckBalance';
 import ProtectedRoute from './components/ProtectedRoute';
+import DisplayTicket from './components/DisplayTicket';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/book/ticket" element={<BookTicket />} />
             <Route path="/add/funds" element={<AddFunds />} />
             <Route path="/check/balance" element={<CheckBalance />} />
+            <Route path="/display/ticket" element={<DisplayTicket />} />
           </Route>
         </Routes>
       </BaseLayout>
