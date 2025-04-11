@@ -30,11 +30,11 @@ const Home = () => {
       <div className="welcome-message">
         <h1>Welcome to Booking</h1>
         <p>Book your rides easily and conveniently.</p>
-        {isLoggedIn && (
+        {/* {isLoggedIn && (
           <button className="btn main-btn" onClick={handleSearchTrain}>
             Search Train
           </button>
-        )}
+        )} */}
       </div>
     </div>
   );

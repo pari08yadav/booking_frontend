@@ -53,16 +53,16 @@ const Header = () => {
         <div className="nav-buttons">
           {!isLoggedIn ? (
             <>
-              <button className="btn" onClick={handleLogin}>
+              <button className="login-btn" onClick={handleLogin}>
                 Login
               </button>
-              <button className="btn" onClick={handleSignup}>
+              <button className="signup-btn" onClick={handleSignup}>
                 Signup
               </button>
             </>
           ) : (
             <>
-              <button className="btn" onClick={handleSearchTrain}>
+              <button className="search-train-btn" onClick={handleSearchTrain}>
                 Search Train
               </button>
               <div className="profile-menu">
